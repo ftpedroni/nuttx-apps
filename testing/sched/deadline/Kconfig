@@ -1,0 +1,29 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config TESTING_DEADLINE
+	tristate "SCHED_DEADLINE attribute API test"
+	default n
+	depends on SCHED_DEADLINE
+	---help---
+		Check the deadline attribute API and run the live deadline tests.
+		Also builds schedbench, which compares SCHED_SPORADIC and
+		SCHED_DEADLINE on one image.
+
+if TESTING_DEADLINE
+
+config TESTING_DEADLINE_PROGNAME
+	string "Program name"
+	default "deadlinetest"
+
+config TESTING_DEADLINE_PRIORITY
+	int "deadlinetest task priority"
+	default 100
+
+config TESTING_DEADLINE_STACKSIZE
+	int "deadlinetest stack size"
+	default 8192
+
+endif
